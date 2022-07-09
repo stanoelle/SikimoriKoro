@@ -218,11 +218,11 @@ def info(update: Update, context: CallbackContext):
     buttons = [
     [
                         InlineKeyboardButton(
-                             text="Health",
-                             url="https://t.me/Shikimori_bot_Updates/9"),
+                             text="Bot",
+                             url="https://t.me/KoroXSensei_bot"),
                        InlineKeyboardButton(
                              text="Disasters",
-                             url="https://t.me/Shikimori_bot_Updates/6"),
+                             url="https://t.me/KoroSensei_Support"),
                     ],
     ]
     user_id = extract_user(update.effective_message, args)
