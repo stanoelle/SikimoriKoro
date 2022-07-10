@@ -60,7 +60,6 @@ async def Lycia(_, message):
 __help__ = f"""
  • `/voicebot` <msg> : {bot_name} replies to your chat.
 
- Made By @SimpleBoy787
 """
 
 __mod_name__ = "Voice Bot"
