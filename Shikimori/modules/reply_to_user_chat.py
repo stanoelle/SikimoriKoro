@@ -104,33 +104,6 @@ def hello(update, context):
 
     time.sleep(5)
 
-def bye(update, context):
-    message = update.effective_message
-    user1 = message.from_user.first_name
-    try:
-        if bye_id in ("jpeg", "jpg", "png"):
-            update.effective_message.reply_photo(
-            MEDIA_BYE, caption = f"*Bye!!* {user1}",
-            parse_mode=ParseMode.MARKDOWN,
-        )
-        elif bye_id in ("mp4", "mkv"):
-            update.effective_message.reply_video(
-            MEDIA_BYE, caption = f"*Bye!!* {user1}",
-            parse_mode=ParseMode.MARKDOWN,
-        )
-        elif bye_id in ("gif", "webp"):
-            update.effective_message.reply_animation(
-            MEDIA_BYE, caption = f"*Bye!!* {user1}",
-            parse_mode=ParseMode.MARKDOWN,
-        )
-        else:
-            reply = f"*Bye!!* {user1}"
-            message.reply_text(reply)
-    except:
-        reply = f"*Bye!!* {user1}"
-        message.reply_text(reply)
-    
-    time.sleep(5)
 
 
 
@@ -140,8 +113,6 @@ GDMORNING_HANDLER = MessageHandler(
 GDNIGHT_HANDLER = MessageHandler(
     Filters.regex("(?i)(good night|goodnight)"), goodnight, friendly="goodnight", run_async = True
 )
-BYE_HANDLER = MessageHandler(
-    Filters.regex("(?i)(bye|brb|afk)"), bye, friendly="bye", run_async = True
 )
 HELLO_HANDLER = MessageHandler(
     Filters.regex("(?i)(hello)"), hello, friendly="hello", run_async = True
