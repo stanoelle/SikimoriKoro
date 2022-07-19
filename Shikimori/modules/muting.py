@@ -2,8 +2,8 @@ import html
 import re
 from typing import Optional
 
-from Shikimori import LOGGER, TIGERS, dispatcher
-from Shikimori.modules.helper_funcs.chat_status import (
+from EmikoRobot import LOGGER, TIGERS, dispatcher
+from EmikoRobot.modules.helper_funcs.chat_status import (
     bot_admin,
     can_restrict,
     connection_status,
@@ -11,11 +11,12 @@ from Shikimori.modules.helper_funcs.chat_status import (
     user_admin,
     user_admin_no_reply,
 )
-from Shikimori.modules.helper_funcs.extraction import (
+from EmikoRobot.modules.helper_funcs.extraction import (
+    extract_user,
     extract_user_and_text,
 )
-from Shikimori.modules.helper_funcs.string_handling import extract_time
-from Shikimori.modules.log_channel import loggable
+from EmikoRobot.modules.helper_funcs.string_handling import extract_time
+from EmikoRobot.modules.log_channel import loggable
 from telegram import (
     Bot, 
     Chat, 
@@ -28,7 +29,7 @@ from telegram import (
     InlineKeyboardMarkup
 )
 from telegram.error import BadRequest
-from telegram.ext import CallbackContext, CommandHandler, CallbackQueryHandler
+from telegram.ext import CallbackContext, CommandHandler, run_async, CallbackQueryHandler
 from telegram.utils.helpers import mention_html
 
 
@@ -162,8 +163,8 @@ def unmute(update: Update, context: CallbackContext) -> str:
             pass
         bot.sendMessage(
         chat.id,
-        "{} [<code>{}</code>] {} Was 🔊 Unmuted.\n\nReason: <code>{}</code>".format(
-            mention_html(member.user.id, member.user.first_name), member.user.id, reason
+        "{} [<code>{}</code>] Was 🔊 Unmuted.".format(
+            mention_html(member.user.id, member.user.first_name), member.user.id
         ),
         parse_mode=ParseMode.HTML,
         )
@@ -281,12 +282,12 @@ def button(update: Update, context: CallbackContext) -> str:
         )                
         unmuted = bot.restrict_chat_member(chat.id, int(user_id), chat_permissions)
         if unmuted:
-            update.effective_message.edit_text(
+        	update.effective_message.edit_text(
         	    f"{mention_html(member.user.id, member.user.first_name)} [<code>{member.user.id}</code>] Now can 🔊 speak again.",
         	    parse_mode=ParseMode.HTML,
         	)
-            query.answer("Unmuted!")
-            return (
+        	query.answer("Unmuted!")
+        	return (
                     f"<b>{html.escape(chat.title)}:</b>\n" 
                     f"#UNMUTE\n" 
                     f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
