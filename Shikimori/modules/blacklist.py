@@ -1,3 +1,29 @@
+"""
+STATUS: Code is working. ✅
+"""
+
+"""
+GNU General Public License v3.0
+
+Copyright (C) 2022, SOME-1HING [https://github.com/SOME-1HING]
+
+Credits:-
+    I don't know who originally wrote this code. If you originally wrote this code, please reach out to me. 
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
+
 import html
 import re
 
@@ -6,7 +32,7 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import mention_html
 
-import Shikimori.modules.sql.blacklist_sql as sql
+import Shikimori.modules.sql_2.blacklist_sql as sql
 from Shikimori import dispatcher, LOGGER
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.chat_status import user_admin, user_not_admin
@@ -16,7 +42,7 @@ from Shikimori.modules.log_channel import loggable
 from Shikimori.modules.warns import warn
 from Shikimori.modules.helper_funcs.string_handling import extract_time
 from Shikimori.modules.connection import connected
-from Shikimori.modules.sql.approve_sql import is_approved
+from Shikimori.modules.sql_2.approve_sql import is_approved
 from Shikimori.modules.helper_funcs.alternate import send_message, typing_action
 
 BLACKLIST_GROUP = 11
@@ -457,10 +483,10 @@ BLACKLIST_HANDLER = DisableAbleCommandHandler(
     admin_ok=True,
     run_async=True,
 )
-ADD_BLACKLIST_HANDLER = CommandHandler("addblacklist", add_blacklist, run_async=True)
-UNBLACKLIST_HANDLER = CommandHandler("unblacklist", unblacklist, run_async=True)
+ADD_BLACKLIST_HANDLER = CommandHandler("addblacklist", add_blacklist, run_async=True, filters=Filters.chat_type.groups)
+UNBLACKLIST_HANDLER = CommandHandler("unblacklist", unblacklist, run_async=True, filters=Filters.chat_type.groups)
 BLACKLISTMODE_HANDLER = CommandHandler(
-    "blacklistmode", blacklist_mode, pass_args=True, run_async=True
+    "blacklistmode", blacklist_mode, pass_args=True, run_async=True, filters=Filters.chat_type.groups
 )
 BLACKLIST_DEL_HANDLER = MessageHandler(
     (Filters.text | Filters.command | Filters.sticker | Filters.photo)
