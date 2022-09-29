@@ -30,7 +30,7 @@ def humanbytes(size):
 
 
 if bool(os.environ.get("ENV", False)):
-    from KuramaRobot import config
+    from Shikimori import config
     
 ytregex = r"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
 
