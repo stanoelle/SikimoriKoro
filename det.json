@@ -1,24 +1,7 @@
 {
-      "name": "Shikimori Bot",
-      "description": "A Powerful  Telegram group management bot with anime theme.",
-      "keywords": [
-         "telegram",
-         "advance",
-         "group",
-         "manager",
-         "naorobot"
-      ],
-    
-   "logo":    "https://telegra.ph/file/05fabeb65cd4c1a80c079.jpg",  
-   "repository": "https://github.com/SOME-1HING/ShikimoriBot",
-   "buildpacks": [
-    {
-      "url": "https://github.com/heroku/heroku-buildpack-python"
-    },
-    {
-      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
-    }
-  ],  
+    "name": "your app name",
+    "description": "your app description", 
+    "runtime": "micro's runtime",
    "env": {
       "TOKEN": {
          "description": "Your bot token. Get one from @BotFather duh",
@@ -247,4 +230,5 @@
          "value": "https://telegra.ph/file/061054c8f73fe7ffbf6aa.mp4"
       }
    }
+      "cron": "default cron expression (for eg. 3 minutes)"
 }
